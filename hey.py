@@ -56,21 +56,21 @@ def Marzban(url3):
       for b in range(0,10):
         for c in range(0,10):
           for d in range(0,10):
-            try:
+
               url4 = f"https://{url3}/wizpanel1{a}{b}{c}{d}/login.php".strip()
               # Send the request
-              with requests.get(url4, timeout=30, verify=True) as response:
+              with requests.get(url4, timeout=30,  proxies=proxy, verify=false) as response:
                 status_code = response.status_code
-                if status_code ==200 :
+                if status_code == 200 :
                   print(f"{colors.GREY}=> {colors.RESET} {colors.LGREEN} successful : {url3}{colors.RESET} ")
                   Good.write(f"{url4}")
                   Good.flush()
                 else :
                   print(f"{colors.GREY}=>  failed : {url3} {status_code}{colors.RESET} ")
-            except Exception as e:
-              print(f"{colors.LPURPLE}=>  Exception : {url3} {e} {colors.RESET} ")
-              exception.write(f"{url3} : {e}\n")
-              exception.flush()
+  except Exception as e:
+    print(f"{colors.LPURPLE}=>  Exception : {url3} {e} {colors.RESET} ")
+    exception.write(f"{url3} : {e}\n")
+    exception.flush()
         
   finally:
     print(f"{colors.GREY}=> {colors.RESET} {colors.LRED} Failed : {url3} {colors.RESET} ")
@@ -80,7 +80,7 @@ def Marzban(url3):
 def main():
 
   with concurrent.futures.ThreadPoolExecutor(
-      max_workers=1) as executor:  #Adjust max_workers as needed
+      max_workers=200) as executor:  #Adjust max_workers as needed
     executor.map(Marzban,url2)
 
 
