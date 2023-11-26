@@ -45,28 +45,40 @@ proxy = {
 
 
 def Marzban(url3):
-
+good=False
   """
   #display()
   #print(f"{colors.GREY}=> {colors.RESET} {colors.LYELLOW} {url3}")"""
 
-  
+  port=url3.split(":")
   try:
     for a in range(0,10):
       for b in range(0,10):
         for c in range(0,10):
           for d in range(0,10):
-
-              url4 = f"https://{url3}/wizpanel1{a}{b}{c}{d}/login.php".strip()
-              # Send the request
-              with requests.get(url4, timeout=30,  proxies=proxy, verify=false) as response:
-                status_code = response.status_code
-                if status_code == 200 :
-                  print(f"{colors.GREY}=> {colors.RESET} {colors.LGREEN} successful : {url3}{colors.RESET} ")
-                  Good.write(f"{url4}")
-                  Good.flush()
-                else :
-                  print(f"{colors.GREY}=>  failed : {url3} {status_code}{colors.RESET} ")
+            if(port[1].strip()=="443"):
+              url4 = f"https://{url3.strip()}/wizpanel112354/login.php".strip()
+            elif(port[1].strip()=="80"):
+              url4 = f"http://{url3.strip()}/wizpanel112354/login.php".strip()
+            else:
+              url4 = f"https://{url3.strip()}/wizpanel112354/login.php".strip()
+            # Send the request
+            with requests.get(url4, timeout=30,  proxies=proxy, verify=false) as response:
+              status_code = response.status_code
+              if status_code == 200 :
+                print(f"{colors.GREY}=> {colors.RESET} {colors.LGREEN} successful : {url3}{colors.RESET} ")
+                Good.write(f"{url4}")
+                Good.flush()
+                good=True
+                break
+              else :
+                print(f"{colors.GREY}=>  failed : {url3} {status_code}{colors.RESET} ")
+          if good==True:
+            break
+        if good==True:
+          break
+      if good==True:
+        break
   except Exception as e:
     print(f"{colors.LPURPLE}=>  Exception : {url3} {e} {colors.RESET} ")
     exception.write(f"{url3} : {e}\n")
