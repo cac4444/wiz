@@ -55,11 +55,11 @@ def Marzban(url3):
         for c in range(0,10):
           for d in range(0,10):
             if(port[1].strip()=="443"):
-              url4 = f"https://{url3.strip()}/wizpane1{a}{b}{c}{d}/login.php".strip()
+              url4 = f"https://{url3.strip()}/wizpanel1{a}{b}{c}{d}/login.php".strip()
             elif(port[1].strip()=="80"):
-              url4 = f"http://{url3.strip()}/wizpane1{a}{b}{c}{d}/login.php".strip()
+              url4 = f"http://{url3.strip()}/wizpanel1{a}{b}{c}{d}/login.php".strip()
             else:
-              url4 = f"https://{url3.strip()}/wizpane1{a}{b}{c}{d}/login.php".strip()
+              url4 = f"https://{url3.strip()}/wizpanel1{a}{b}{c}{d}/login.php".strip()
             # Send the request
             with requests.get(url4, timeout=30,  proxies=proxy, verify=False) as response:
               status_code = response.status_code
