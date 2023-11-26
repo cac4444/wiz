@@ -63,7 +63,7 @@ good=False
             else:
               url4 = f"https://{url3.strip()}/wizpanel112354/login.php".strip()
             # Send the request
-            with requests.get(url4, timeout=30,  proxies=proxy, verify=false) as response:
+            with requests.get(url4, timeout=30,  proxies=proxy, verify=False) as response:
               status_code = response.status_code
               if status_code == 200 :
                 print(f"{colors.GREY}=> {colors.RESET} {colors.LGREEN} successful : {url3}{colors.RESET} ")
